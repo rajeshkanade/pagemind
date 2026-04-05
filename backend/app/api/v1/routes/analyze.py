@@ -9,6 +9,9 @@ from app.services.analyze_service import ask_page, summarize_page
 
 router = APIRouter()
 
+@router.get("/")
+async def root():
+    return {"message": "Hello World"}
 
 @router.post("/summarize", response_model=SummarizeResponse)
 async def summarize(data: SummarizeRequest):

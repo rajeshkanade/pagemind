@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Backend local files
+backend/.env
+backend/app/__pycache__/
+backend/app/api/v1/__pycache__/
+backend/app/schema/__pycache__/
+backend/app/utils/
+backend/chroma_db/

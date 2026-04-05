@@ -15,7 +15,7 @@ const statusConfig = {
   ready: {
     label: 'Ready to process',
     tone: 'ready',
-    helper: 'The current website URL is saved in popup state.',
+    helper: 'The current page is captured and ready for page-specific AI actions.',
   },
   missing: {
     label: 'No active page found',
@@ -81,7 +81,7 @@ function buildSummary(pageInfo) {
 
   const domain = getDomain(pageInfo.url)
 
-  return `Connected to ${domain}. This page is tracked in state and ready for extract, summarize, or ask flows.`
+  return `Connected to ${domain}. This page is ready for a focused summary and page-specific questions.`
 }
 
 export default function HomePage() {
@@ -297,7 +297,7 @@ export default function HomePage() {
       <nav className="tab-row" aria-label="Popup sections">
         {[
           ['overview', 'Overview'],
-          ['assistant', 'Assistant'],
+          ['assistant', 'Page Q&A'],
           ['settings', 'Settings'],
         ].map(([key, label]) => (
           <button
@@ -330,7 +330,7 @@ export default function HomePage() {
             <div className="card-head">
               <div>
                 <span className="section-label">Quick summary</span>
-                <h3>Ready for your app workflow</h3>
+                <h3>Summary for this page</h3>
               </div>
             </div>
             <p>{summary}</p>
@@ -350,16 +350,16 @@ export default function HomePage() {
         <section className="content-card">
           <div className="summary-card">
             <span className="section-label">Ask about this page</span>
-            <h3>Queue a question for the selected website</h3>
+            <h3>Get answers grounded in this page</h3>
             <div className="input-stack">
               <textarea
                 className="text-input text-area"
-                placeholder="Ask something about the current site..."
+                placeholder="Ask something about the current page..."
                 value={question}
                 onChange={(event) => setQuestion(event.target.value)}
               />
               <button className="primary-button full-width" onClick={handleAsk} type="button">
-                {apiState.loading ? 'Sending...' : 'Save question'}
+                {apiState.loading ? 'Sending...' : 'Ask this page'}
               </button>
             </div>
           </div>
@@ -367,8 +367,8 @@ export default function HomePage() {
           <div className="message-list">
             {messages.length === 0 ? (
               <div className="empty-state">
-                <p>No questions saved yet.</p>
-                <span>Your current site URL will stay available while you work in this popup.</span>
+                <p>No page questions yet.</p>
+                <span>Ask a question and the answer will use content from the current page.</span>
               </div>
             ) : (
               messages.map((message, index) => (

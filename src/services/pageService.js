@@ -27,9 +27,9 @@ async function requestJson(baseUrl, endpoint, payload) {
 }
 
 export async function summarizePage(baseUrl, pagePayload) {
-  return requestJson(baseUrl, '/api/summarize-page', pagePayload)
+  return requestJson(baseUrl, '/api/v1/analyze/summarize', pagePayload)
 }
 
 export async function askPageQuestion(baseUrl, payload) {
-  return requestJson(baseUrl, '/api/ask-page', payload)
+  return requestJson(baseUrl, '/api/v1/analyze/ask', payload)
 }
